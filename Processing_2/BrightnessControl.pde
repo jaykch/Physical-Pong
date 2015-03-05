@@ -13,6 +13,12 @@ float speedL;
 float lastSpeedL=0;
 float brightnessL;
 
+float TimeThreshold=1000;
+float currentTimeLeft;
+float currentTimeRight;
+
+int thresholdBrightness=300;
+
 float timeAR=0;
 float timeBR=1;
 float timeR;
@@ -20,13 +26,13 @@ float tuneTimeR;
 float speedR;
 float lastSpeedR=0;
 float brightnessR;
-float brightnessTimeRA;
-float brightnessTimeRB;
+
 
 float distance = 2000;//this is used to measure the speed of the bike - Note: this is only used when speedcontrol is in effect
 
 void brightnessControlLeft()// function to control brightness of the left half of the screen using magnetic sensors from the left bike
 {
+   currentTimeLeft=millis()-timeAL;
    if (arduino.digitalRead(leftMagneticPin) == Arduino.HIGH)
   {
     timeAL=millis();
@@ -42,17 +48,18 @@ void brightnessControlLeft()// function to control brightness of the left half o
      //println("SPEED=",speedL);
  
      lastSpeedL=speedL;
+     brightnessL = thresholdBrightness - (speedL);
    }
-      
-   brightnessL = 250 - (speedL);
+   if(currentTimeLeft>TimeThreshold)
+   {brightnessL=thresholdBrightness;}
+       
    fill(0, 0, 0, brightnessL); 
    rect(0, 0, width/2, height);
 }
 
 void brightnessControlRight()// function to control brightness of the right half of the screen using magnetic sensors from the right bike
 {
-   brightnessTimeRA=millis();
-   brightnessTimeRB=millis();
+  currentTimeRight=millis()-timeAR;
   if (arduino.digitalRead(rightMagneticPin) == Arduino.HIGH)
   {
    
@@ -60,7 +67,6 @@ void brightnessControlRight()// function to control brightness of the right half
     timeR=timeAR-timeBR;
     //println("time of contact=",time/1000);//debug code to check the time between 2 readings from magnetic sensor
     timeBR=timeAR;
-    brightnessTimeRB=0;
    }
   if(timeR>50)
   {
@@ -70,9 +76,11 @@ void brightnessControlRight()// function to control brightness of the right half
     //println("SPEED=",speedR);
  
     lastSpeedR=speedR;
+    brightnessR = thresholdBrightness - (speedR);
   }
+   if(currentTimeRight>TimeThreshold)
+   {brightnessR=thresholdBrightness;}
   
-  brightnessR = 250 - (speedR);
   fill(0, 0, 0, brightnessR); 
   rect(width/2, 0, width, height);
 }

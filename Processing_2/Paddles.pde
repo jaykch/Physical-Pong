@@ -4,12 +4,12 @@
 float paddleEdgeDistance=30;//distance of both paddles from the left and right end of the screen
 
 float paddleLW=30;//width of the left paddle
-int paddleLH=200;//height of the left paddle
+int paddleLH=300;//height of the left paddle
 float XpaddleL;//X coordinate of the left paddle
 float YpaddleL=100;//Y coordinate of left paddle
 
 float paddleRW=30;//width of the right paddle
-int paddleRH=200;//height of the right paddle
+int paddleRH=300;//height of the right paddle
 float XpaddleR;//X coordiante of the right paddle
 float YpaddleR=300;//Y coordiante of right paddle
 

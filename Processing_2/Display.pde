@@ -7,6 +7,7 @@ int rightBarX;//starting coordinate of the right bar - Note: to adjust it in the
 int leftBarX;//starting coordinate of the left bar - Note: to adjust it in the first line of the display function to avoid bugs or change the value of the barDistance variable
 int barDistance=20;//use this variable to adjust the distance of both the power bars form the left and right side of the screen
 
+int scoreDistance=200;//adjust this to change the horizontal position of the scores
 int sizeScore=48;//adjust this to change the text size of the score
 int sizeGameOver=32;//adjust this to change the text size of the game over text
 
@@ -39,8 +40,8 @@ void display()//this function draws the score and the power bars that charge up 
   {
     X=width/2;
     Y=height/2;
-    text(scoreR,width/2-100,45);
-    text(scoreL,width/2+80,45);
+    text(scoreR,width/2-scoreDistance,45);
+    text(scoreL,width/2+scoreDistance-20,45);
     textSize(sizeGameOver);
     text("GAME OVER!",width/2-290,100);
     text("PRESS R TO RESET",width/2+100,100);
@@ -48,8 +49,8 @@ void display()//this function draws the score and the power bars that charge up 
   } 
   else
   {
-     text(scoreR,width/2-100,45);
-     text(scoreL,width/2+90,45);
+     text(scoreR,width/2-scoreDistance,45);
+     text(scoreL,width/2+scoreDistance-20,45);
   }
  }
  
@@ -96,7 +97,7 @@ if (frame != null) //resize code
 }  
 
 //CODE FOR FULLSCREEN
-/*
+
 boolean sketchFullScreen() {
   return true;
-}*/
+}

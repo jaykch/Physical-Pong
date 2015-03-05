@@ -1,5 +1,3 @@
-/*x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x- ::: VERSION - 3.2 ::: -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x*/
-
 //THIS IS THE MAIN BODY OF THIS GAME AND INCLUDES ALL THE FUNCTIONS THAT RUN THE GAME. TO ADJUST ANYTHING READ COMMENTS AFTER EVERY FUNCTION
 
 //IMPORTANT: TO CHANGE THE SCORE AT WHICH THE GAME ENDS ADJUST endScore VARIABLE IN THE SCORE TAB
@@ -16,14 +14,14 @@ CONTROLS:
 4.  PRESS LEFT OR RIGHT TO TEST THE RIGHT POWER BAR
 5.  PRESS UP OR DOWN TO TEST THE LEFT POWER BAR
 6.  PRESS R TO RESET THE GAME
-7.  HOLD 1 AND MOVE THE MOUSE TO SET THE FIRST HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE LEFT SO ONLY USE IT ON THE LEFT SIDE OF THE CENTER LINE
-8.  HOLD 2 AND MOVE THE MOUSE TO SET THE SECOND HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE LEFT SO ONLY USE IT ON THE LEFT SIDE OF THE CENTER LINE
-9.  HOLD 1 AND MOVE THE MOUSE TO SET THE THIRD HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE RIGHT SO ONLY USE IT ON THE RIGHT SIDE OF THE CENTER LINE
-10. HOLD 2 AND MOVE THE MOUSE TO SET THE FOURTH HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE RIGHT SO ONLY USE IT ON THE RIGHT SIDE OF THE CENTER LINE
+7.  HOLD 1 AND MOVE THE MOUSE TO SET THE FIRST HOLE :  IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE RIGHT SO ONLY USE IT ON THE RIGHT SIDE OF THE CENTER LINE
+8.  HOLD 2 AND MOVE THE MOUSE TO SET THE SECOND HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE RIGHT SO ONLY USE IT ON THE RIGHT SIDE OF THE CENTER LINE
+9.  HOLD 3 AND MOVE THE MOUSE TO SET THE THIRD HOLE :  IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE LEFT SO ONLY USE IT ON THE LEFT SIDE OF THE CENTER LINE
+10. HOLD 4 AND MOVE THE MOUSE TO SET THE FOURTH HOLE : IMPORTANT - THIS HOLE UPDATES THE SCORE ON THE LEFT SO ONLY USE IT ON THE LEFT SIDE OF THE CENTER LINE
 */
 
-int screenWidth=1600;//adjust this to change the width of the game
-int screenHeight=800;//adjust this to change the height of the game
+int screenWidth=1920;//adjust this to change the width of the game
+int screenHeight=1080;//adjust this to change the height of the game
 
 void setup()
 {
@@ -36,8 +34,8 @@ void setup()
   arduino.pinMode(3, Arduino.INPUT);//setting the arduino input for magnetic sensor
   arduino.pinMode(4, Arduino.INPUT);//setting the arduino input for magnetic sensor
   minim = new Minim(this);//the following code is to load the music files for sound effects of the game
-  //backgroundMusic = minim.loadFile("backgroundMusic.mp3", 2048);
-  //backgroundMusic.play();
+  backgroundMusic = minim.loadFile("backgroundMusic.mp3", 2048);
+  backgroundMusic.loop();
   edgeBounceAudio = minim.loadSample("edgeBounceAudio.mp3",512);
   paddleBounceAudio = minim.loadSample("paddleBounceAudio.wav",512);
 }
@@ -58,11 +56,11 @@ void draw()
   holeSystem();//function to add and control holes in the game : Refer to Holes Tab
   ballMovement();//function to make the ball move : Refer to Ball Tab
   paddles();//function to define the paddles on each side : Refer to Paddles Tab
-  //brightnessControlLeft();//function to change the brightness of left side of the screen : Refer to BrightnessControl Tab
-  //brightnessControlRight();//function to change the brightness of right side of the screen : Refer to BrightnessControl Tab
+  brightnessControlLeft();//function to change the brightness of left side of the screen : Refer to BrightnessControl Tab
+  brightnessControlRight();//function to change the brightness of right side of the screen : Refer to BrightnessControl Tab
   score();//function to update the score of the game : Refer to Score Tab
-  //leftPaddleMove();//function to move the left paddle using arduino : Refer to Arduino Control Tab 
-  //rightPaddleMove();//function to move the right paddle using arduino : Refer to Arduino Control Tab
+  leftPaddleMove();//function to move the left paddle using arduino : Refer to Arduino Control Tab 
+  rightPaddleMove();//function to move the right paddle using arduino : Refer to Arduino Control Tab
   music();//function to play the sound effects : Refer to Music Tab    
   ballAngle();//Function to change the ball angle according to the position it hits the paddle : Refer to BallAngle Tab
   

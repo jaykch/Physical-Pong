@@ -3,20 +3,20 @@
 //LEFT SIDE HOLES
 int hole1Xposition=-2000;
 int hole1Yposition;
-int hole1radius=60;//adjust this variable to change the radius of the first hole
+int hole1radius=80;//adjust this variable to change the radius of the first hole
 
 int hole2Xposition=-2000;
 int hole2Yposition;
-int hole2radius=60;//adjust this variable to change the radius of the second hole
+int hole2radius=80;//adjust this variable to change the radius of the second hole
 
 //RIGHT SIDE HOLES
 int hole3Xposition=-2000;
 int hole3Yposition;
-int hole3radius = 60;//adjust this variable to change the radius of the third hole
+int hole3radius=80;//adjust this variable to change the radius of the third hole
 
 int hole4Xposition=-2000;
 int hole4Yposition;
-int hole4radius = 60;//adjust this variable to change the radius of the fourth hole
+int hole4radius=80;//adjust this variable to change the radius of the fourth hole
 
 void holeSystem()//this function contains code to draw the craters in game and algorithm to update score and make the ball disappear when it goes inside a crater
 {
